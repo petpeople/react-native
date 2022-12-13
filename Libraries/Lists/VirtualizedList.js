@@ -14,6 +14,7 @@ const ReactNative = require('../Renderer/shims/ReactNative');
 const RefreshControl = require('../Components/RefreshControl/RefreshControl');
 const ScrollView = require('../Components/ScrollView/ScrollView');
 const StyleSheet = require('../StyleSheet/StyleSheet');
+const Platform = require('../Utilities/Platform');
 const View = require('../Components/View/View');
 const ViewabilityHelper = require('./ViewabilityHelper');
 
@@ -2108,8 +2109,10 @@ function describeNestedLists(childList: {
 }
 
 const styles = StyleSheet.create({
-  verticallyInverted: {
-    transform: [{scaleY: -1}],
+  verticallyInverted: Platform.OS === 'android' ? {
+    scaleY: -1
+  } : {
+    transform: [{ scaleY: -1 }]
   },
   horizontallyInverted: {
     transform: [{scaleX: -1}],
